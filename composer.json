@@ -1,0 +1,23 @@
+{
+    "name": "mrssoft/rbs",
+    "version": "1.0.0",
+    "description": "Component for executing requests to HTTP Services 1C ",
+    "keywords": ["yii", "payment", "sberbank"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Melnikov Ruslan",
+            "email": "mrs2000@inbox.ru"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "yiisoft/yii2": ">=2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "mrssoft\\rbs\\": ""
+        }
+    }
+}
