@@ -53,7 +53,7 @@ Get order info
     ...
     'components' => [
         'rbs' = > [
-            'class' => '\mrssoft\rbs\Rbs',
+            'class' => \mrssoft\rbs\Rbs::class,
             'auth' => [ // multiple accounts
                 'first' => [
                     'userName' => 'username1',
