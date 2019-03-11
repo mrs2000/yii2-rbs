@@ -36,8 +36,14 @@ class RbsOrder extends BaseObject
      */
     public $description;
 
-    private $items;
+    /**
+     * @var array
+     */
+    private $items = [];
 
+    /**
+     * @var float
+     */
     private $amount;
 
     /**

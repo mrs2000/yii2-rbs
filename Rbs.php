@@ -5,7 +5,7 @@ namespace mrssoft\rbs;
 use Yii;
 use yii\base\Component;
 use yii\base\Exception;
-use yii\base\InvalidParamException;
+use yii\base\InvalidValueException;
 
 /**
  * Component for payment through the payment gateway "Sberbank"
@@ -178,7 +178,7 @@ class Rbs extends Component
     {
         if ($account) {
             if (isset($this->auth[$account]) === false) {
-                throw new InvalidParamException("Account [$account] not found.");
+                throw new InvalidValueException("Account [$account] not found.");
             }
             $data['userName'] = $this->auth[$account]['userName'];
             $data['password'] = $this->auth[$account]['password'];
@@ -187,10 +187,10 @@ class Rbs extends Component
             $data['password'] = $this->password;
         }
         if (empty($data['userName'])) {
-            throw new InvalidParamException('User name is empty.');
+            throw new InvalidValueException('User name is empty.');
         }
         if (empty($data['password'])) {
-            throw new InvalidParamException('Password is empty.');
+            throw new InvalidValueException('Password is empty.');
         }
     }
 }
