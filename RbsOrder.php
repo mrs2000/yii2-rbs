@@ -4,6 +4,11 @@ namespace mrssoft\rbs;
 
 use yii\base\BaseObject;
 
+/**
+ * Payment order
+ *
+ * @author Melnikov R.S. <mrs2000@inbox.ru>
+ */
 class RbsOrder extends BaseObject
 {
     /**
@@ -79,25 +84,25 @@ class RbsOrder extends BaseObject
         $result = [
             'orderNumber' => $this->orderNumber,
             'amount' => $this->amount,
-            'returnUrl' =>$this->returnUrl,
+            'returnUrl' => $this->returnUrl,
             'failUrl' => $this->failUrl,
-            'description' => $this->description
+            'description' => $this->description,
+            'currency' => '643',
+            'language' => 'ru',
         ];
 
-        $customerDetails = [];
         if ($this->email) {
-            $customerDetails['email'] = $this->email;
+            $result['orderBundle']['customerDetails']['email'] = $this->email;
             $result['jsonParams']['email'] = $this->email;
         }
+
         if ($this->phone) {
-            $customerDetails['phone'] = $this->phone;
+            $result['orderBundle']['customerDetails']['phone'] = $this->phone;
+            $result['jsonParams']['phone'] = $this->phone;
         }
 
-        $result['orderBundle'] = [
-            'customerDetails' => $customerDetails,
-            'cartItems' => [
-                'items' => $this->items
-            ]
+        $result['orderBundle']['cartItems'] = [
+            'items' => $this->items
         ];
 
         return $result;

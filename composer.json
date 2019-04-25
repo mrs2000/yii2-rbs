@@ -1,7 +1,7 @@
 {
     "name": "mrssoft/rbs",
-    "version": "1.0.1",
-    "description": "Component for executing requests to HTTP Services 1C ",
+    "version": "1.1.0",
+    "description": "Component for payment through the payment gateway Sberbank",
     "keywords": ["yii", "payment", "sberbank"],
     "type": "yii2-extension",
     "license": "MIT",

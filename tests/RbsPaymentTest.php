@@ -5,19 +5,19 @@ namespace mrssoft\rbs\tests;
 use mrssoft\rbs\Rbs;
 use mrssoft\rbs\RbsOrder;
 
-class RbsTest extends \PHPUnit\Framework\TestCase
+class RbsPaymentTest extends \PHPUnit\Framework\TestCase
 {
     private $params;
 
-    private $paymentOrderId;
+    private $paymentId;
 
     public function setUp()
     {
-        $this->params = json_decode(file_get_contents(__DIR__ . '\params.json'), true);
-        $this->paymentOrderId = '8b64ca2a-d217-7582-8b64-ca2a0000076c';
+        $this->params = json_decode(file_get_contents(__DIR__ . '\params-payment.json'), true);
+        $this->paymentId = '8b64ca2a-d217-7582-8b64-ca2a0000076c';
     }
 
-    public function testRegister()
+    public function testRegisterPaymentCard()
     {
         $rbs = new Rbs($this->params);
 
@@ -32,39 +32,40 @@ class RbsTest extends \PHPUnit\Framework\TestCase
         $rbsOrder->addCartItem('a321', 'Product name II', 145, 2.5);
 
         $response = $rbs->register($rbsOrder);
-        $this->paymentOrderId = $response['orderId'];
+        $this->paymentId = $response['orderId'];
 
         $this->assertNotNull($response);
         $this->assertArrayHasKey('orderId', $response);
         $this->assertArrayHasKey('formUrl', $response);
     }
 
-    public function testGetStatus()
+    public function testGetPaymentStatus()
     {
-        if ($this->paymentOrderId) {
+        if ($this->paymentId) {
             $rbs = new Rbs($this->params);
-            $response = $rbs->getOrderStatus($this->paymentOrderId);
+            $response = $rbs->getOrderStatus($this->paymentId);
             $this->assertNotNull($response);
             $this->assertArrayHasKey('OrderStatus', $response);
         }
     }
 
-    public function testGetInfo()
+    public function testGetPaymentInfo()
     {
-        if ($this->paymentOrderId) {
+        if ($this->paymentId) {
             $rbs = new Rbs($this->params);
-            $info = $rbs->getOrderInfo($this->paymentOrderId);
+            $info = $rbs->getOrderInfo($this->paymentId);
             $this->assertNotNull($info);
             $this->assertNotEmpty($info);
         }
     }
 
-    public function testAccount()
+    public function testPaymentAccount()
     {
-        if ($this->paymentOrderId) {
+        if ($this->paymentId) {
             $rbs = new Rbs($this->params);
-            $response = $rbs->getOrderStatus($this->paymentOrderId, 'first');
+            $response = $rbs->getOrderStatus($this->paymentId, 'first');
             $this->assertNotNull($response);
         }
     }
+
 }

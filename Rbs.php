@@ -25,6 +25,11 @@ class Rbs extends Component
     public $password;
 
     /**
+     * @var boolean
+     */
+    public $credit = false;
+
+    /**
      * @var string
      */
     public $server = 'https://securepayments.sberbank.ru/payment/rest/';
@@ -44,6 +49,14 @@ class Rbs extends Component
     public function register(RbsOrder $rbsOrder, ?string $account = null): ?array
     {
         $data = $rbsOrder->_generate();
+
+        if ($this->credit) {
+            $data['orderBundle']['installments'] = [
+                'productType' => 'INSTALLMENT',
+                'productID' => '10'
+            ];
+        }
+
         return $this->request('register.do', $data, $account);
     }
 

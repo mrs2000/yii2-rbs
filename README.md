@@ -17,6 +17,7 @@ to the require section of your `composer.json` file.
 Register order
 ```php
     $rbs = new Rbs(['userName' => '', 'password' => '']);
+    $rbs->credit = true; //if credit
     
     $rbsOrder = new RbsOrder();
     $rbsOrder->orderNumber = 'NM-12874';
