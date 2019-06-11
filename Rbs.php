@@ -195,6 +195,9 @@ class Rbs extends Component
             }
             $data['userName'] = $this->auth[$account]['userName'];
             $data['password'] = $this->auth[$account]['password'];
+            if (!empty($this->auth[$account]['server'])) {
+                $this->server = $this->auth[$account]['server'];
+            }
         } else {
             $data['userName'] = $this->userName;
             $data['password'] = $this->password;

@@ -25,6 +25,8 @@ Register order
     $rbsOrder->description = 'Test';
     $rbsOrder->returnUrl = 'https:/mysite.com/payment/success';
     $rbsOrder->failUrl = 'https:/mysite.com/payment/fail';
+    $rbsOrder->credit = 1; //for credit payment
+
     
     $rbsOrder->addCartItem(123, 'Product name', 450.80, 2);
     $rbsOrder->addCartItem('a321', 'Product name II', 145, 2.5);
@@ -57,12 +59,13 @@ Get order info
             'class' => \mrssoft\rbs\Rbs::class,
             'auth' => [ // multiple accounts
                 'first' => [
+                    'server' => 'https://3dsec.sberbank.ru/sbercredit/',
                     'userName' => 'username1',
-                    'password' => '',
+                    'password' => '*****',
                 ],
                 'second' => [
                     'userName' => 'username2',
-                    'password' => '',
+                    'password' => ''*****',
                 ]
             ]
         ]

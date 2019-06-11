@@ -1,6 +1,6 @@
 {
     "name": "mrssoft/rbs",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Component for payment through the payment gateway Sberbank",
     "keywords": ["yii", "payment", "sberbank"],
     "type": "yii2-extension",
