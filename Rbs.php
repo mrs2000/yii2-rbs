@@ -9,6 +9,7 @@ use yii\base\InvalidValueException;
 
 /**
  * Component for payment through the payment gateway "Sberbank"
+ * @see https://securepayments.sberbank.ru/wiki/doku.php/start
  *
  * @author Melnikov R.S. <mrs2000@inbox.ru>
  */

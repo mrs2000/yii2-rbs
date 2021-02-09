@@ -1,5 +1,11 @@
 # RBS
 Component for payment through the payment gateway "Sberbank"
+[Sberbank Manual](https://securepayments.sberbank.ru/wiki/doku.php/start)
+
+[![Latest Stable Version](https://img.shields.io/packagist/v/mrssoft/rbs.svg)](https://packagist.org/packages/mrssoft/rbs)
+![PHP](https://img.shields.io/packagist/php-v/mrssoft/rbs.svg)
+![Github](https://img.shields.io/github/license/mrs2000/yii2-rbs.svg)
+![Total Downloads](https://img.shields.io/packagist/dt/mrssoft/rbs.svg)
 
 ### Installation
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
@@ -49,7 +55,7 @@ Get order info
     $rbs = new Rbs(['userName' => '', 'password' => '']);
     $info = $rbsOrder->getOrderInfo('00256ad8-a6e3-4302-xxxx-846d6c0fd6bd');
 ```
-### Usage as component
+### Usage as Yii component
 ```php
     
     // Application config

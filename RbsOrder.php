@@ -8,6 +8,7 @@ use yii\base\BaseObject;
  * Payment order
  *
  * @author Melnikov R.S. <mrs2000@inbox.ru>
+ * @see https://securepayments.sberbank.ru/wiki/doku.php/start
  */
 class RbsOrder extends BaseObject
 {
@@ -62,7 +63,7 @@ class RbsOrder extends BaseObject
     public function addCartItem($itemCode, string $name, float $price, float $qty = 1, ?string $unit = 'шт'): void
     {
         $price = round($price * 100);
-        $amount = $price * $qty;
+        $amount = round($price * $qty);
 
         $this->items[] = [
             'positionId' => count($this->items) + 1,
