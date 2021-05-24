@@ -60,14 +60,14 @@ class RbsOrder extends BaseObject
      * @param float $qty
      * @param string $unit
      */
-    public function addCartItem($itemCode, string $name, float $price, float $qty = 1, ?string $unit = 'шт'): void
+    public function addCartItem($itemCode, string $name, float $price, float $qty = 1, string $unit = 'шт'): void
     {
         $price = round($price * 100);
         $amount = round($price * $qty);
 
         $this->items[] = [
             'positionId' => count($this->items) + 1,
-            'name' => mb_substr($name, 0, 100),
+            'name' => $this->prepareItemName($name),
             'quantity' => [
                 'value' => $qty,
                 'measure' => $unit
@@ -80,7 +80,13 @@ class RbsOrder extends BaseObject
         $this->amount += $amount;
     }
 
-    public function _generate()
+    private function prepareItemName(string $name): string
+    {
+        $name = str_ireplace(' LIKE ', ' ', $name);
+        return mb_substr($name, 0, 100);
+    }
+
+    public function _generate(): array
     {
         $result = [
             'orderNumber' => $this->orderNumber,
