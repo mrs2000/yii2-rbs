@@ -29,7 +29,7 @@ class RbsPaymentTest extends \PHPUnit\Framework\TestCase
         $rbsOrder->failUrl = 'https:/mysite.com/payment/fail';
 
         $rbsOrder->addCartItem(123, 'Product name', 450.05, 2);
-        $rbsOrder->addCartItem('a321', 'Product LIKE name II', 145, 2.5);
+        $rbsOrder->addCartItem('a321', 'SELECT FROM ORDER WHERE AND Product LIKE name II', 145, 2.5);
 
         $response = $rbs->register($rbsOrder);
         $this->paymentId = $response['orderId'];

@@ -82,7 +82,7 @@ class RbsOrder extends BaseObject
 
     private function prepareItemName(string $name): string
     {
-        $name = str_ireplace(' LIKE ', ' ', $name);
+        $name = str_ireplace([' LIKE ', 'SELECT '], ' ', $name);
         return mb_substr($name, 0, 100);
     }
 
