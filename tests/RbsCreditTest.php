@@ -7,9 +7,9 @@ use mrssoft\rbs\RbsOrder;
 
 class RbsCreditTest extends \PHPUnit\Framework\TestCase
 {
-    private $params;
+    private array $params;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->params = json_decode(file_get_contents(__DIR__ . '\params-credit.json'), true);
     }

@@ -22,8 +22,9 @@ to the require section of your `composer.json` file.
 ### Usage
 Register order
 ```php
-    $rbs = new Rbs(['userName' => '', 'password' => '']);
+    $rbs = new \mrssoft\rbs\Rbs(['userName' => '', 'password' => '']);
     $rbs->credit = true; //if credit
+    $rbs->productType = 'CREDIT';
     
     $rbsOrder = new RbsOrder();
     $rbsOrder->orderNumber = 'NM-12874';
@@ -46,13 +47,13 @@ Register order
 ```
 Get order status
 ```php
-    $rbs = new Rbs(['userName' => '', 'password' => '']);
+    $rbs = new \mrssoft\rbs\Rbs(['userName' => '', 'password' => '']);
     $response = $rbsOrder->getOrderStatus('00256ad8-a6e3-4302-xxxx-846d6c0fd6bd');
     //$response['OrderStatus'] - order state code
 ```
 Get order info
 ```php
-    $rbs = new Rbs(['userName' => '', 'password' => '']);
+    $rbs = new \mrssoft\rbs\Rbs(['userName' => '', 'password' => '']);
     $info = $rbsOrder->getOrderInfo('00256ad8-a6e3-4302-xxxx-846d6c0fd6bd');
 ```
 ### Usage as Yii component

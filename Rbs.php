@@ -18,27 +18,25 @@ class Rbs extends Component
     /**
      * @var string
      */
-    public $userName;
+    public string $userName = '';
 
     /**
      * @var string|array
      */
-    public $password;
+    public string|array $password = '';
 
-    /**
-     * @var boolean
-     */
-    public $credit = false;
+    public bool $credit = false;
 
-    /**
-     * @var string
-     */
-    public $server = 'https://securepayments.sberbank.ru/payment/rest/';
+    // CREDIT - Кредит
+    // INSTALLMENT - Рассрочка
+    public string $productType = 'CREDIT';
+
+    public string $server = 'https://securepayments.sberbank.ru/payment/rest/';
 
     /**
      * @var array
      */
-    public $auth;
+    public array $auth = [];
 
     /**
      * Register a new order
@@ -53,7 +51,7 @@ class Rbs extends Component
 
         if ($this->credit) {
             $data['orderBundle']['installments'] = [
-                'productType' => 'INSTALLMENT',
+                'productType' => $this->productType,
                 'productID' => '10'
             ];
         }
@@ -114,16 +112,18 @@ class Rbs extends Component
                 }
                 $info['Статус'] = $status;
 
-                if (isset($response['actionCodeDescription'])) {
+                if (empty($response['actionCodeDescription']) === false) {
                     $info['Последнее действие'] = $response['actionCodeDescription'];
                 }
 
                 if (isset($response['cardAuthInfo'])) {
-                    $info['Держатель карты'] = $response['cardAuthInfo']['cardholderName'];
-                    $info['Номер карты'] = $response['cardAuthInfo']['pan'];
-                    $expiration = $response['cardAuthInfo']['expiration'];
-                    $expiration = substr($expiration, 0, 4) . ' / ' . substr($expiration, 4);
-                    $info['Номер карты'] .= ' ' . $expiration;
+                    $info['Держатель карты'] = $response['cardAuthInfo']['cardholderName'] ?? '-';
+                    $info['Номер карты'] = $response['cardAuthInfo']['pan'] ?? '-';
+                    $expiration = $response['cardAuthInfo']['expiration'] ?? null;
+                    if ($expiration) {
+                        $expiration = substr($expiration, 0, 4) . ' / ' . substr($expiration, 4);
+                        $info['Номер карты'] .= ' ' . $expiration;
+                    }
                 }
 
                 if (isset($response['paymentAmountInfo'])) {

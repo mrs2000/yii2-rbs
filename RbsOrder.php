@@ -12,45 +12,28 @@ use yii\base\BaseObject;
  */
 class RbsOrder extends BaseObject
 {
-    /**
-     * @var string - buyer's e-mail
-     */
-    public $email;
+    /** Buyer's e-mail */
+    public string $email = '';
 
-    /**
-     * @var string - buyer's phone number
-     */
-    public $phone;
+    /** Buyer's phone number */
+    public string $phone = '';
 
-    /**
-     * @var string - order number
-     */
-    public $orderNumber;
+    /** Order number */
+    public string $orderNumber = '';
 
-    /**
-     * @var string|array
-     */
-    public $returnUrl;
+    /** Order date */
+    public string $orderDate = '';
 
-    /**
-     * @var string|array
-     */
-    public $failUrl;
+    public string $returnUrl = '';
 
-    /**
-     * @var string - order description
-     */
-    public $description;
+    public string $failUrl = '';
 
-    /**
-     * @var array
-     */
-    private $items = [];
+    /** Order description */
+    public string $description = '';
 
-    /**
-     * @var float
-     */
-    private $amount;
+    public array $items = [];
+
+    public float $amount = 0;
 
     /**
      * Add item to cart
@@ -60,7 +43,7 @@ class RbsOrder extends BaseObject
      * @param float $qty
      * @param string $unit
      */
-    public function addCartItem($itemCode, string $name, float $price, float $qty = 1, string $unit = 'шт'): void
+    public function addCartItem(mixed $itemCode, string $name, float $price, float $qty = 1, string $unit = 'шт'): void
     {
         $price = round($price * 100);
         $amount = round($price * $qty);

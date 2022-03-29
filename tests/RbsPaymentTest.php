@@ -7,11 +7,11 @@ use mrssoft\rbs\RbsOrder;
 
 class RbsPaymentTest extends \PHPUnit\Framework\TestCase
 {
-    private $params;
+    private array $params;
 
-    private $paymentId;
+    private string $paymentId;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->params = json_decode(file_get_contents(__DIR__ . '\params-payment.json'), true);
         $this->paymentId = '8b64ca2a-d217-7582-8b64-ca2a0000076c';
