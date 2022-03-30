@@ -39,6 +39,26 @@ class RbsPaymentTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('formUrl', $response);
     }
 
+    public function testRegisterPaymentCardWithoutEmail()
+    {
+        $rbs = new Rbs($this->params);
+
+        $rbsOrder = new RbsOrder();
+        $rbsOrder->orderNumber = 'NM-12874-' . time();
+        $rbsOrder->email = null;
+        $rbsOrder->returnUrl = 'https:/mysite.com/payment/success';
+        $rbsOrder->failUrl = 'https:/mysite.com/payment/fail';
+
+        $rbsOrder->addCartItem(123, 'Product name', 450.05, 2);
+
+        $response = $rbs->register($rbsOrder);
+        $this->paymentId = $response['orderId'];
+
+        $this->assertNotNull($response);
+        $this->assertArrayHasKey('orderId', $response);
+        $this->assertArrayHasKey('formUrl', $response);
+    }
+
     public function testGetPaymentStatus()
     {
         if ($this->paymentId) {

@@ -13,10 +13,10 @@ use yii\base\BaseObject;
 class RbsOrder extends BaseObject
 {
     /** Buyer's e-mail */
-    public string $email = '';
+    public string|null $email = null;
 
     /** Buyer's phone number */
-    public string $phone = '';
+    public string|null $phone = null;
 
     /** Order number */
     public string $orderNumber = '';
