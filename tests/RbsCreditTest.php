@@ -18,6 +18,31 @@ class RbsCreditTest extends \PHPUnit\Framework\TestCase
     {
         $rbs = new Rbs($this->params);
         $rbs->credit = true;
+        $rbs->productType = Rbs::TYPE_CREDIT_DEFAULT;
+
+        $rbsOrder = new RbsOrder();
+        $rbsOrder->orderNumber = 'NM-12874-' . time();
+        $rbsOrder->email = 'test@mail.com';
+        $rbsOrder->phone = '89833145368'; //required
+        $rbsOrder->description = 'Test credit';
+        $rbsOrder->returnUrl = 'https:/mysite.com/payment/success';
+        $rbsOrder->failUrl = 'https:/mysite.com/payment/fail';
+
+        $rbsOrder->addCartItem(123, 'Product name', 450.05, 2);
+        $rbsOrder->addCartItem('a321', 'Product name II', 145, 2.5);
+
+        $response = $rbs->register($rbsOrder);
+
+        $this->assertNotNull($response);
+        $this->assertArrayHasKey('orderId', $response);
+        $this->assertArrayHasKey('formUrl', $response);
+    }
+
+    public function testRegisterInstallment()
+    {
+        $rbs = new Rbs($this->params);
+        $rbs->credit = true;
+        $rbs->productType = Rbs::TYPE_CREDIT_INSTALLMENT;
 
         $rbsOrder = new RbsOrder();
         $rbsOrder->orderNumber = 'NM-12874-' . time();

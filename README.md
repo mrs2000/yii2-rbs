@@ -1,6 +1,7 @@
 # RBS
-Component for payment through the payment gateway "Sberbank"
-[Sberbank Manual](https://securepayments.sberbank.ru/wiki/doku.php/start)
+Component for payment through the payment gateway bank "Sber"
+
+[Sber Manual](https://securepayments.sberbank.ru/wiki/doku.php/start)
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/mrssoft/rbs.svg)](https://packagist.org/packages/mrssoft/rbs)
 ![PHP](https://img.shields.io/packagist/php-v/mrssoft/rbs.svg)
@@ -24,7 +25,7 @@ Register order
 ```php
     $rbs = new \mrssoft\rbs\Rbs(['userName' => '', 'password' => '']);
     $rbs->credit = true; //if credit
-    $rbs->productType = 'CREDIT';
+    $rbs->productType = \mrssoft\rbs\Rbs::TYPE_CREDIT_INSTALLMENT;
     
     $rbsOrder = new RbsOrder();
     $rbsOrder->orderNumber = 'NM-12874';
@@ -48,13 +49,13 @@ Register order
 Get order status
 ```php
     $rbs = new \mrssoft\rbs\Rbs(['userName' => '', 'password' => '']);
-    $response = $rbsOrder->getOrderStatus('00256ad8-a6e3-4302-xxxx-846d6c0fd6bd');
+    $response = $rbsOrder->getOrderStatus('00256ad8-xxxx-4302-xxxx-846d6c0fd6bd');
     //$response['OrderStatus'] - order state code
 ```
 Get order info
 ```php
     $rbs = new \mrssoft\rbs\Rbs(['userName' => '', 'password' => '']);
-    $info = $rbsOrder->getOrderInfo('00256ad8-a6e3-4302-xxxx-846d6c0fd6bd');
+    $info = $rbsOrder->getOrderInfo('00256ad8-xxxx-4302-xxxx-846d6c0fd6bd');
 ```
 ### Usage as Yii component
 ```php

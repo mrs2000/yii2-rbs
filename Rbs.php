@@ -15,21 +15,15 @@ use yii\base\InvalidValueException;
  */
 class Rbs extends Component
 {
-    /**
-     * @var string
-     */
+    public const TYPE_CREDIT_DEFAULT = 'CREDIT';
+    public const TYPE_CREDIT_INSTALLMENT = 'INSTALLMENT';
+
     public string $userName = '';
 
-    /**
-     * @var string|array
-     */
     public string|array $password = '';
 
     public bool $credit = false;
-
-    // CREDIT - Кредит
-    // INSTALLMENT - Рассрочка
-    public string $productType = 'CREDIT';
+    public string $productType = self::TYPE_CREDIT_DEFAULT;
 
     public string $server = 'https://securepayments.sberbank.ru/payment/rest/';
 
