@@ -73,7 +73,7 @@ Get order info
                 ],
                 'second' => [
                     'userName' => 'username2',
-                    'password' => ''*****',
+                    'password' => '*****',
                 ]
             ]
         ]

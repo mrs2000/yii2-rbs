@@ -87,5 +87,4 @@ class RbsPaymentTest extends \PHPUnit\Framework\TestCase
             $this->assertNotNull($response);
         }
     }
-
 }

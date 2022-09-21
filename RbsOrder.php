@@ -91,9 +91,11 @@ class RbsOrder extends BaseObject
             $result['jsonParams']['phone'] = $this->phone;
         }
 
-        $result['orderBundle']['cartItems'] = [
-            'items' => $this->items
-        ];
+        if (count($this->items)) {
+            $result['orderBundle']['cartItems'] = [
+                'items' => $this->items
+            ];
+        }
 
         return $result;
     }

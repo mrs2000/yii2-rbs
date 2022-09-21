@@ -133,7 +133,6 @@ class Rbs extends Component
         return $info;
     }
 
-
     /**
      * Sending a request to the payment gateway server
      * @param string $command
