@@ -5,7 +5,7 @@ namespace mrssoft\rbs\tests;
 use mrssoft\rbs\Rbs;
 use mrssoft\rbs\RbsOrder;
 
-class RbsPaymentTest extends \PHPUnit\Framework\TestCase
+final class RbsPaymentTest extends \PHPUnit\Framework\TestCase
 {
     private array $params;
 
@@ -17,7 +17,7 @@ class RbsPaymentTest extends \PHPUnit\Framework\TestCase
         $this->paymentId = '8b64ca2a-d217-7582-8b64-ca2a0000076c';
     }
 
-    public function testRegisterPaymentCard()
+    public function testRegisterPaymentCard(): void
     {
         $rbs = new Rbs($this->params);
 
@@ -39,7 +39,7 @@ class RbsPaymentTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('formUrl', $response);
     }
 
-    public function testRegisterPaymentCardWithoutEmail()
+    public function testRegisterPaymentCardWithoutEmail(): void
     {
         $rbs = new Rbs($this->params);
 
@@ -59,7 +59,7 @@ class RbsPaymentTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('formUrl', $response);
     }
 
-    public function testGetPaymentStatus()
+    public function testGetPaymentStatus(): void
     {
         if ($this->paymentId) {
             $rbs = new Rbs($this->params);
@@ -69,7 +69,7 @@ class RbsPaymentTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function testGetPaymentInfo()
+    public function testGetPaymentInfo(): void
     {
         if ($this->paymentId) {
             $rbs = new Rbs($this->params);
@@ -79,7 +79,7 @@ class RbsPaymentTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function testPaymentAccount()
+    public function testPaymentAccount(): void
     {
         if ($this->paymentId) {
             $rbs = new Rbs($this->params);

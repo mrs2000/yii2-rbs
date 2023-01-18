@@ -5,7 +5,7 @@ namespace mrssoft\rbs\tests;
 use mrssoft\rbs\Rbs;
 use mrssoft\rbs\RbsOrder;
 
-class RbsCreditTest extends \PHPUnit\Framework\TestCase
+final class RbsCreditTest extends \PHPUnit\Framework\TestCase
 {
     private array $params;
 

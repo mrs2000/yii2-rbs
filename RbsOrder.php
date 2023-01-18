@@ -10,7 +10,7 @@ use yii\base\BaseObject;
  * @author Melnikov R.S. <mrs2000@inbox.ru>
  * @see https://securepayments.sberbank.ru/wiki/doku.php/start
  */
-class RbsOrder extends BaseObject
+final class RbsOrder extends BaseObject
 {
     /** Buyer's e-mail */
     public string|null $email = null;

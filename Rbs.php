@@ -13,7 +13,7 @@ use yii\base\InvalidValueException;
  *
  * @author Melnikov R.S. <mrs2000@inbox.ru>
  */
-class Rbs extends Component
+final class Rbs extends Component
 {
     public const TYPE_CREDIT_DEFAULT = 'CREDIT';
     public const TYPE_CREDIT_INSTALLMENT = 'INSTALLMENT';
@@ -151,6 +151,7 @@ class Rbs extends Component
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CAINFO, __DIR__ . '/Cert_CA.pem');
         $response = curl_exec($ch);
 
         if (curl_errno($ch)) {
